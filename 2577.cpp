@@ -1,22 +1,21 @@
-#include<cstdio>
+#include<iostream>
+#include<algorithm>
+#define MAX 101
+
 using namespace std;
-typedef long long ll;
-
-int main(void)
-{
-	int num, arr[10] = { 0 };
-	ll sum = 1;
-	for (int i = 0; i < 3; i++){ scanf("%d", &num); sum *= num; }
-	while (1){
-		int temp;
-		temp = sum % 10;
-		arr[temp]++;
-		sum /= 10;
-		if (sum == 0){ break; }
+int N, K, binoCoeff[MAX][MAX];
+int main() {
+	cin >> N >> K;
+	for (int i = 1; i <= N + 1; i++) {
+		for (int j = 1; j <= min(i, K + 1); j++) {
+			if (j == 1 || j == i){
+				binoCoeff[i][j] = 1;
+			}
+			else {
+				binoCoeff[i][j] = (binoCoeff[i - 1][j - 1] + binoCoeff[i - 1][j]);
+			}
+		}
 	}
-
-	for (int i = 0; i < 10; i++){
-		printf("%d\n", arr[i]);
-	}
-
+	cout << binoCoeff[N + 1][K + 1];
+	return 0;
 }
