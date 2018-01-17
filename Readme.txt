@@ -1,1 +1,1 @@
-Algorithm Practice
+Problem Solving Practice 
